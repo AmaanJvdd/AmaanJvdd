@@ -1,0 +1,17 @@
+Create a favicon.ico image using HTML
+ 
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<title> Sammy’s First Website </title>
+<link rel="shortcut icon" type="image/jpg" href="Favicon_Image_Location"/>
+
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+
+</body>
+</html>
