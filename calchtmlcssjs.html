@@ -1,0 +1,232 @@
+Step 1. Set Up the React Environment
+Before we can start building the calculator, we need to set up the React environment. Assuming you have Node.js installed, open your terminal and run the command below to create a new React project:
+
+npx create-react-app calculator-app
+HTTP
+Copy
+Once the project is created, navigate to the project folder by running:
+
+cd calculator-app
+HTTP
+Copy
+Step 2. Creating Components
+In React, components are the building blocks of a user interface. We will create three components: Calculator, Display, and Keypad.
+
+Inside the src folder, create a new folder called components. Inside this folder, create three files: Calculator.js, Display.js, and Keypad.js.
+
+Open the Calculator.js file and add the following code.
+
+import React from "react";
+import Display from "./Display";
+import Keypad from "./Keypad";
+ 
+class Calculator extends React.Component {
+ render() {
+   return (
+     <div className="calculator">
+       <Display />
+       <Keypad />
+     </div>
+   );
+ }
+}
+ 
+export default Calculator;
+JavaScript
+Copy
+Next, open the Display.js file and add the following code.
+
+import React from "react";
+ 
+class Display extends React.Component {
+ render() {
+   return <input type="text" className="display" />;
+ }
+}
+ 
+export default Display;
+JavaScript
+Copy
+Finally, open the Keypad.js file and add the following code.
+
+import React from "react";
+ 
+class Keypad extends React.Component {
+ render() {
+   return (
+     <div className="keypad">
+       {/* keypad buttons */}
+     </div>
+   );
+ }
+}
+ 
+export default Keypad;
+JavaScript
+Copy
+Step 3. Implementing the Calculator Logic
+Now that we have our components set up, let's implement the logic for our calculator. Let's start by adding the keypad buttons inside the Keypad component.
+
+import React from "react";
+ 
+class Keypad extends React.Component {
+ render() {
+   return (
+     <div className="keypad">
+       {/* keypad buttons */}
+       <button>1</button>
+       <button>2</button>
+       <button>3</button>
+       {/* and so on */}
+     </div>
+   );
+ }
+}
+ 
+export default Keypad;
+JavaScript
+Copy
+Next, let's handle the clicking of the keypad buttons and update the display accordingly.
+
+import React from "react";
+ 
+class Keypad extends React.Component {
+ handleClick = (value) => {
+   // handle the button click here
+ };
+ 
+ render() {
+   return (
+     <div className="keypad">
+       {/* keypad buttons */}
+       <button onClick={() => this.handleClick(1)}>1</button>
+       <button onClick={() => this.handleClick(2)}>2</button>
+       <button onClick={() => this.handleClick(3)}>3</button>
+       {/* and so on */}
+     </div>
+   );
+ }
+}
+ 
+export default Keypad;
+JavaScript
+Copy
+Now, let's update the state of the Calculator component when a button is clicked.
+
+import React from "react";
+import Display from "./Display";
+import Keypad from "./Keypad";
+ 
+class Calculator extends React.Component {
+ state = {
+   displayValue: "",
+ };
+ 
+ handleClick = (value) => {
+   this.setState((prevState) => ({
+     displayValue: prevState.displayValue + value,
+   }));
+ };
+ 
+ render() {
+   return (
+     <div className="calculator">
+       <Display value={this.state.displayValue} />
+       <Keypad onClick={this.handleClick} />
+     </div>
+   );
+ }
+}
+ 
+export default Calculator;
+JavaScript
+Copy
+Next, let's update the Display component to show the value received from the Calculator component as a prop.
+
+import React from "react";
+ 
+class Display extends React.Component {
+ render() {
+   return <input type="text" className="display" value={this.props.value} />;
+ }
+}
+ 
+export default Display;
+JavaScript
+Copy
+Finally, let's update the Keypad component to call the onClick prop with the button's value when it is clicked.
+
+import React from "react";
+ 
+class Keypad extends React.Component {
+ handleClick = (value) => {
+   this.props.onClick(value);
+ };
+ 
+ render() {
+   return (
+     <div className="keypad">
+       {/* keypad buttons */}
+       <button onClick={() => this.handleClick(1)}>1</button>
+       <button onClick={() => this.handleClick(2)}>2</button>
+       <button onClick={() => this.handleClick(3)}>3</button>
+       {/* and so on */}
+     </div>
+   );
+ }
+}
+ 
+export default Keypad;
+JavaScript
+Copy
+Step 4. Styling the calculator
+To make our calculator visually appealing, let's add some basic styles. Open the src folder and create a new file called styles.css. Inside this file, add the following styles.
+
+.calculator {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+}
+ 
+.display {
+ margin-bottom: 1rem;
+ width: 200px;
+ height: 30px;
+ padding: 5px;
+}
+ 
+.keypad {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ grid-gap: 0.5rem;
+}
+ 
+button {
+ width: 60px;
+ height: 60px;
+ font-size: 18px;
+}
+JavaScript
+Copy
+Finally, open the App.js file inside the src folder and update it with the following code.
+
+import React from "react";
+import Calculator from "./components/Calculator";
+import "./styles.css";
+ 
+function App() {
+ return (
+   <div className="App">
+     <Calculator />
+   </div>
+ );
+}
+ 
+export default App;
+JavaScript
+Copy
+Step 5. Run the Calculator App
+To see the calculator in action, go back to your terminal and run the following command.
+
+npm start
